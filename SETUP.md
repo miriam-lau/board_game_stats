@@ -39,20 +39,19 @@ Notes: Everything in `app/javascript/packs` folder is automatically compiled by 
 ## Add PostgreSQL Database
 
 #### Install PostgreSQL:
-1. Install on OS X with Homebrew: find path for `pg_config`, default is below:
+1. Install on OS X with Homebrew: Find path for `pg_config`, default is below:
 ```
   gem install pg -- --with-pg-config=/usr/local/bin/pg_config
 ```
-2. Install on Windows:
+2. Install on Windows: Choose the win32 build. Install PostgreSQL and put its /bin directory on your path.
 ```
   gem install pg
 ```
-  Choose the win32 build. Install PostgreSQL and put its /bin directory on your path.
 
 #### Create role in PostgreSQL:
 1. Open user `postgres`.
 2. Run `CREATE ROLE myapp WITH CREATEDB LOGIN PASSWORD 'password'`.
-3. Add password to `~/.bashrc` with alias: `BOARD_GAME_STATS_DATABASE_PASSWORD`.
+3. Add password to `~/.bashrc` with alias: `MYAPP_DATABASE_PASSWORD`.
 
 #### Update Rails App:
 1. In `Gemfile`, replace `gem sqlite 3` with `gem 'pg'`.
@@ -63,24 +62,24 @@ Notes: Everything in `app/javascript/packs` folder is automatically compiled by 
     adapter: postgresql
     encoding: unicode
     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-    username: board_game_stats
-    password: <%= ENV['BOARD_GAME_STATS_DATABASE_PASSWORD'] %>
+    username: myapp
+    password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
 
   development:
     <<: *default
-    database: board_game_stats_development
+    database: myapp_development
 
   test:
     <<: *default
-    database: board_game_stats_test
+    database: myapp_test
 
   production:
     <<: *default
-    database: board_game_stats_production
+    database: myapp_production
 ```
 
 ### Create Database
-1. Run `rake db:create && rake db:migrate`, then should see:
+1. Run `rake db:create && rake db:migrate`, then you should see:
 ```
   Created database 'myapp_development'
   Created database 'myapp_test'
