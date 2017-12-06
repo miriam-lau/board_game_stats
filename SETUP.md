@@ -79,7 +79,7 @@ Notes: Everything in `app/javascript/packs` folder is automatically compiled by 
 ```
 
 ### Create Database
-1. Run `rake db:create && rake db:migrate`, then should see:
+1. Run `rake db:create && rake db:migrate`, then you should see:
 ```
   Created database 'myapp_development'
   Created database 'myapp_test'
