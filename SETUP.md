@@ -52,6 +52,7 @@ Notes: Everything in `app/javascript/packs` folder is automatically compiled by 
 #### Create role in PostgreSQL:
 1. Open user `postgres`.
 2. Run `CREATE ROLE myapp WITH CREATEDB LOGIN PASSWORD 'password'`.
+3. Add password to `~/.bashrc` with alias: `BOARD_GAME_STATS_DATABASE_PASSWORD`.
 
 #### Update Rails App:
 1. In `Gemfile`, replace `gem sqlite 3` with `gem 'pg'`.
