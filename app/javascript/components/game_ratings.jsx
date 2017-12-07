@@ -10,27 +10,40 @@ const ratingScale = [
   "4: Will never suggest but can be convinced.",
   "3: Probably will never play it again, but can be coerced to play.",
   "2: Would never play it again and can't be convinced.",
-  "1: Would burn the gam if I see it again."
+  "1: Would burn the game if I see it again."
 ]
 
 class GameRatings extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = { showRatingScale: false }
+  }
+
+  toggleRatingScale() {
+    this.setState({ showRatingScale: !this.state.showRatingScale });
+  }
+
   render() {
     return (
       <div className="ratings-wrapper">
         <h1>Board Game Reviews</h1>
+        <button onClick={ () => this.toggleRatingScale() }>Rating Scale</button>
 
-        <section className="rating-scale">
-          <article>Rating Scale</article>
-          <ul>
-            { ratingScale.map( (item, idx) => {
-              return (
-                <li key={ idx }>{ item }</li>
-              );
-            })}
-          </ul>
-        </section>
+        {this.state.showRatingScale ?
+          <section className="rating-scale">
+            <article>Rating Scale</article>
+            <ul>
+              { ratingScale.map( (item, idx) => {
+                return (
+                  <li key={ idx }>{ item }</li>
+                );
+              })}
+            </ul>
+          </section> : ""
+        }
 
-        <table className="ratings-game-wrapper">
+        <tbody className="ratings-game-wrapper">
           <tr>
             <th>Average Rating</th>
             <th>Image</th>
@@ -40,29 +53,24 @@ class GameRatings extends Component {
             <th>Rating and Comments</th>
           </tr>
 
-          <tbody>
-            <tr>
-              { props.games.map( (game, idx) => {
-                <td>Rating</td>
-                <td><img src=`/public/images/${this.game.image_name}` /></td>
-                <td>{ this.game.name }</td>
-                <td>{ this.game.play_time }</td>
-                <td>{ this.game.own }, Mobile: { this.game.mobile }</td>
-                <td>
-                  <section className="player-ratings">
-                    <article>James</article>
-                    <button>Edit</button>
-                  </section>
-                  <section className="player-ratings">
-                    <article>Miriam</article>
-                    <button>Edit</button>
-                  </section>
-                </td>
-
-            })}
-            </tr>
-          </tbody>
-        </table>
+          <tr>
+            <td>Rating</td>
+            <td>Image</td>
+            <td>Name</td>
+            <td>Play Time</td>
+            <td>Own, Mobile</td>
+            <td>
+              <section className="player-ratings">
+                <article>James</article>
+                <button>Edit</button>
+              </section>
+              <section className="player-ratings">
+                <article>Miriam</article>
+                <button>Edit</button>
+              </section>
+            </td>
+          </tr>
+        </tbody>
       </div>
     );
   }

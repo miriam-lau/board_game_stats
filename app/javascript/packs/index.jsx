@@ -5,10 +5,22 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
+import GameRatings from "../components/game_ratings";
+
 class App extends Component {
   render() {
     return (
-      <div>Hello World!</div>
+      <div>
+        <header>
+          <button>Game History</button>
+          <button>Game Stats</button>
+          <input value="Search" />
+        </header>
+
+        <main>
+          <GameRatings />
+        </main>
+      </div>
     );
   }
 }
