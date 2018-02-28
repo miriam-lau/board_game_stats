@@ -25,51 +25,77 @@ class GameRatings extends Component {
   }
 
   render() {
+    console.log("GAMES", this.props.games);
+
+    if (this.props.games.length === 0) {
+      return (
+        <div>Loading</div>
+      );
+    }
+
     return (
       <div className="ratings-wrapper">
-        <h1>Board Game Reviews</h1>
-        <button onClick={ () => this.toggleRatingScale() }>Rating Scale</button>
+        <section className="ratings-header">
+          <article className="ratings-title">Board Game Reviews</article>
+          <input value="Sort By" />
+        </section>
 
-        {this.state.showRatingScale ?
-          <section className="rating-scale">
-            <article>Rating Scale</article>
-            <ul>
-              { ratingScale.map( (item, idx) => {
-                return (
-                  <li key={ idx }>{ item }</li>
-                );
-              })}
-            </ul>
-          </section> : ""
-        }
+        <section className="ratings-scale-wrapper">
+          <button onClick={ () => this.toggleRatingScale() }>Rating Scale</button>
+
+          {this.state.showRatingScale ?
+            <section className="rating-scale">
+              <article>Rating Scale</article>
+              <ul>
+                { ratingScale.map( (item, idx) => {
+                  return (
+                    <li key={ idx }>{ item }</li>
+                  );
+                })}
+              </ul>
+            </section> : ""
+          }
+        </section>
 
         <tbody className="ratings-game-wrapper">
-          <tr>
-            <th>Average Rating</th>
+          <tr className="ratings-column-header">
+            <th>Game Id</th>
             <th>Image</th>
             <th>Title</th>
             <th>Estimated Play Time</th>
             <th>Own, Mobile?</th>
+            <th>Included Expansions</th>
             <th>Rating and Comments</th>
           </tr>
 
-          <tr>
-            <td>Rating</td>
-            <td>Image</td>
-            <td>Name</td>
-            <td>Play Time</td>
-            <td>Own, Mobile</td>
-            <td>
-              <section className="player-ratings">
-                <article>James</article>
-                <button>Edit</button>
-              </section>
-              <section className="player-ratings">
-                <article>Miriam</article>
-                <button>Edit</button>
-              </section>
-            </td>
-          </tr>
+          {this.props.games.map(game => {
+            return (
+              <tr className="ratings-row" key={ game.id }>
+                <td>{ game.id }</td>
+                <td>
+                  <img className="ratings-game-image"
+                      src={ `/images/${game.image_name}` } />
+                </td>
+                <td className="ratings-align-left">{ game.name }</td>
+                <td>{ game.play_time }</td>
+                <td>
+                  <article>{ game.own ? "Yes" : "No" }</article>
+                  <article>{ game.own && game.mobile ? "(Mobile)" : ""}</article>
+                </td>
+                <td className="ratings-align-left">{ game.expansions }</td>
+                <td className="player-ratings-wrapper">
+                  <section className="player-ratings">
+                    <article>James</article>
+                    <input value="Edit" />
+                  </section>
+                  <section className="player-ratings">
+                    <article>Miriam</article>
+                    <input value="Edit" />
+                  </section>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </div>
     );

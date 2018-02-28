@@ -2,14 +2,52 @@
   margin: 15px;
 }
 
+.ratings-header {
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px 0;
+}
+
+.ratings-title {
+  width: 250px;
+  font-size: 20px;
+}
+
+.ratings-scale-wrapper {
+  margin-bottom: 20px;
+}
+
 .rating-scale {
   margin: 15px;
 }
 
 .ratings-game-wrapper th, td {
-  border: 1px solid black;
+  border: 1px solid lightgray;
   padding: 10px;
+}
 
+td {
+  text-align: center;
+}
+
+.ratings-column-header {
+  background-color: #e60000;
+}
+
+.ratings-row:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.ratings-align-left {
+  text-align: left;
+}
+
+.ratings-game-image {
+  height: 80px;
+}
+
+.player-ratings-wrapper {
+  text-align: left;
 }
 
 .player-ratings {

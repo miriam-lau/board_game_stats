@@ -10,7 +10,30 @@ html, body, ul, li, button, table {
   list-style: none;
 }
 
+header {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  background-color: lightgray;
+}
+
+.logo {
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.nav-bar {
+  width: calc(100vw - 100px);
+  display: flex;
+  justify-content: space-around;
+}
+
 button {
   border: 1px solid black;
   padding: 5px;
+  max-width: 100px;
+}
+
+button:hover {
+  cursor: pointer;
 }
